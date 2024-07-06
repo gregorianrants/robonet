@@ -3,8 +3,6 @@ import zmq
 import json
 import time
 
-
-
 class Publisher:
     def __init__(self, context, address, node, topic):
         self.context = context
@@ -38,12 +36,16 @@ class Publisher:
     def send_json(self, py_dict):
         # as_json = json.dumps(py_dict)
         # https://pyzmq.readthedocs.io/en/v17.1.0/api/zmq.utils.jsonapi.html
-        self.socket.send(zmq.utils.jsonapi.dumps(py_dict))
+        self.socket.send_multipart([self.topic.encode(),zmq.utils.jsonapi.dumps(py_dict)])
 
     def send_bytes(self, data):
         message = [bytes(self.node, "UTF-8"), bytes(self.topic, "UTF-8"), data]
         # print(message)
         self.socket.send_multipart(message)
+
+
+
+
 
 
 # context = zmq.Context()

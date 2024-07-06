@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
-from Hub import Hub
-from Subscriber import Subscriber
+from src.Hub import Hub
+from src.Subscriber import Subscriber
 import zmq
 import time
 
@@ -12,5 +12,5 @@ DESKTOP_IP = os.getenv('DESKTOP_IP')
 time.sleep(1)
 
 context = zmq.Context()
-subscriber = Subscriber(context,node='camera',topic='frame')
+subscriber = Subscriber(context,[{'node':'motor','topic':'motor-data'}])
 subscriber.start()

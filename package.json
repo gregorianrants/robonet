@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "experiment1": "concurrently --kill-others --raw \"python3 -m experiments.hub1 \"  \"python3 -m experiments.publisher1 \" \"python3 -m experiments.subscriber1\" ",
-    "pip-install": ""
+    "experiment1": "concurrently --kill-others --raw \"python3 -m experiments.experiment1.hub1 \"  \"python3 -m experiments.experiment1.publisher1 \" \"python3 -m experiments.experiment1.subscriber1\" ",
+    "experiment6": "concurrently --kill-others --raw \"python3 -m experiments.experiment6.hub \"  \"python3 -m experiments.experiment6.subscriber\" ",
+    "experiment7": "concurrently --kill-others --raw \"python3 -m experiments.7.hub \"  \"python3 -m experiments.7.publisher \" \"python3 -m experiments.7.subscriber\" ",
+    "hub": "python3 -m experiments.7.hub  ",
+    "pub": "python3 -m experiments.7.publisher",
+    "sub": "python3 -m experiments.7.subscriber"
   },
   "author": "",
   "license": "ISC",

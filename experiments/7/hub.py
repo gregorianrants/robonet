@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from Hub import Hub
+from src.Hub import Hub
 
 
 load_dotenv()

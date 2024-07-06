@@ -23,13 +23,14 @@ class Hub:
 
         while True:
             message = self.socket.recv_json()
+            print(message)
            
             if message['register_as'] == 'publisher':
                 self.registerPublisher(node = message['node'],topic = message['topic'],address=message['address'])
             else:
-                print('hellow')
+                #print('hellow')
                 self.registerSubscription(node=message['node'],topic=message['topic'])
-            print([vars(publisher) for publisher in self.publishers])
+            #print([vars(publisher) for publisher in self.publishers])
             
     def registerPublisher(self,node,topic,address):
         publisher = Publisher(node,topic,address,self.next_port)
