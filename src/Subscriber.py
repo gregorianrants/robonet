@@ -28,6 +28,7 @@ class Subscriber:
         self.publisherAddresses = []
         self.nodes = [publisher['node'] for publisher in publishers]
         self.topics = [publisher['topic'] for publisher in publishers]
+        self.hub_socket = None
        
         self.running = True
 
@@ -35,27 +36,39 @@ class Subscriber:
         self.register()
         self.connect()
 
-    def register(self):
-        socket = self.context.socket(zmq.REQ)
-        socket.connect("tcp://localhost:3000")
-        for publisher in self.publishers:
-            success = False
-            while success==False:
-                socket.send_json(
-                    {
-                            "action": "register",
-                            "register_as": "subscriber",
-                            "node": publisher['node'],
-                            "topic":publisher['topic'],
-                        }
-                )
+    def getPublisherAddress(self,publisher):
+        success = False
+        while success==False:
+            self.hub_socket.send_json(
+                {
+                        "action": "register",
+                        "register_as": "subscriber",
+                        "node": publisher['node'],
+                        "topic":publisher['topic'],
+                    }
+            )
 
-                message = socket.recv_json()
-                if message["status"] == "success":
-                    success = True
-                    print("connected")
-                    self.publisherAddresses.append(message["data"]["full_address"])
-                time.sleep(0.1)
+            message = self.hub_socket.recv_json()
+            if message["status"] == "success":
+                success = True
+                print("connected")
+                return message["data"]["full_address"]
+            time.sleep(0.1)
+
+    def addPublisherAddress(self,address):
+        if not address in self.publisherAddresses:
+            self.publisherAddresses.append(address)
+
+    def register(self):
+        self.hub_socket = self.context.socket(zmq.REQ)
+        self.hub_socket.connect("tcp://localhost:3000")
+        for publisher in self.publishers:
+            publisherAddress = self.getPublisherAddress(publisher)
+            self.addPublisherAddress(publisherAddress)
+            print('publisherAddress:', publisherAddress)
+            print('publisherAddresses:', self.publisherAddresses)
+
+            
 
     def close(self):
         self.running = False

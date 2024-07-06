@@ -8,6 +8,7 @@
     "experiment1": "concurrently --kill-others --raw \"python3 -m experiments.experiment1.hub1 \"  \"python3 -m experiments.experiment1.publisher1 \" \"python3 -m experiments.experiment1.subscriber1\" ",
     "experiment6": "concurrently --kill-others --raw \"python3 -m experiments.experiment6.hub \"  \"python3 -m experiments.experiment6.subscriber\" ",
     "experiment7": "concurrently --kill-others --raw \"python3 -m experiments.7.hub \"  \"python3 -m experiments.7.publisher \" \"python3 -m experiments.7.subscriber\" ",
+    "experiment9": "concurrently --kill-others --raw \"python3 -m experiments.9.hub \"  \"python3 -m experiments.9.publisher \" \"python3 -m experiments.9.subscriber\" ",
     "hub": "python3 -m experiments.7.hub  ",
     "pub": "python3 -m experiments.7.publisher",
     "sub": "python3 -m experiments.7.subscriber"
