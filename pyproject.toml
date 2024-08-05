@@ -5,6 +5,7 @@ description = ""
 authors = ["gregorianrants <gregorian_rants@hotmail.com>"]
 
 
+
 [tool.poetry.dependencies]
 python = "^3.8"
 pyzmq = "^26.1.0"
