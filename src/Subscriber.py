@@ -1,24 +1,6 @@
 import zmq
 import time
-# import numpy as np
-# import matplotlib.pyplot as plt
-
-
-# class SpeedMonitor():
-#     def __init__(self):
-#         self.speeds = []
-#         self.times = []
-
-#     def udpate(self,speed,time):
-#         self.speeds.append(speed)
-#         self.times.append(time)
-
-#     def show(self):
-#         speeds = np.array(self.speeds)
-#         times = np.array(self.times)
-#         times = times -times[0]
-#         plt.plot(times,speeds)
-#         plt.show()
+from collections import defaultdict
 
 class Subscriber:
     def __init__(self, context, publishers):
@@ -29,6 +11,7 @@ class Subscriber:
         self.nodes = [publisher['node'] for publisher in publishers]
         self.topics = [publisher['topic'] for publisher in publishers]
         self.hub_socket = None
+        self.listeners = defaultdict(list)
        
         self.running = True
 
@@ -74,6 +57,10 @@ class Subscriber:
         self.running = False
         self.socket.close()
 
+    def add_listener(self,topic,f):
+        self.listeners[topic].append(f)
+
+
 
     def listener(self,message):
         # time = message['time']
@@ -94,6 +81,7 @@ class Subscriber:
             topic,body= self.socket.recv_multipart()
             message = zmq.utils.jsonapi.loads(body)
             topic = topic.decode()
+            [listener(message) for listener in self.listeners[topic]]
             print(topic,message)
             # self.listener(message)
        

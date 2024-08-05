@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "robonet"
+version = "0.1.0"
+description = ""
+authors = ["gregorianrants <gregorian_rants@hotmail.com>"]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyzmq = "^26.1.0"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
