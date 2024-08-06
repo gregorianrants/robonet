@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
-from src.Hub import Hub
-from src.Subscriber import Subscriber
+from robonet.Hub import Hub
+from robonet.Subscriber import Subscriber
 import zmq
 import time
 

@@ -7,7 +7,7 @@ authors = ["gregorianrants <gregorian_rants@hotmail.com>"]
 
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9.2"
 pyzmq = "^26.1.0"
 python-dotenv = "^1.0.1"
 

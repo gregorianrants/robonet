@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from src.Hub import Hub
+from robonet.Hub import Hub
 
 
 load_dotenv()

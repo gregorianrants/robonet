@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
-from src.Hub import Hub
-from src.Publisher import Publisher
+from robonet.Hub import Hub
+from robonet.Publisher import Publisher
 import zmq
 import time
 
