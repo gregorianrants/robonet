@@ -12,6 +12,6 @@ DESKTOP_IP = os.getenv('DESKTOP_IP')
 time.sleep(1)
 
 context = zmq.Context()
-subscriber = Subscriber(context,[{'node':'motor','topic':'motor-data1'},{'node':'motor','topic':'motor-data2'}
+subscriber = Subscriber(DESKTOP_IP,context,[{'node':'motor','topic':'motor-data1'},{'node':'motor','topic':'motor-data2'}
                                ,{'node': 'camera','topic':'frame'}])
 subscriber.start()

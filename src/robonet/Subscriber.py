@@ -3,7 +3,7 @@ import time
 from collections import defaultdict
 
 class Subscriber:
-    def __init__(self, context, publishers):
+    def __init__(self, hub_ip,context, publishers):
         self.context = context
         self.socket = None
         self.publishers = publishers
@@ -12,8 +12,8 @@ class Subscriber:
         self.topics = [publisher['topic'] for publisher in publishers]
         self.hub_socket = None
         self.listeners = defaultdict(list)
-       
         self.running = True
+        self.hub_ip = hub_ip
 
     def start(self):
         self.register()
@@ -44,7 +44,8 @@ class Subscriber:
 
     def register(self):
         self.hub_socket = self.context.socket(zmq.REQ)
-        self.hub_socket.connect("tcp://localhost:3000")
+        # self.hub_socket.connect("tcp://localhost:3000")
+        self.hub_socket.connect(f"tcp://{self.hub_ip}:3000")
         for publisher in self.publishers:
             publisherAddress = self.getPublisherAddress(publisher)
             self.addPublisherAddress(publisherAddress)

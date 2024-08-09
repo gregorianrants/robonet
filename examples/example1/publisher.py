@@ -15,9 +15,9 @@ time.sleep(2)
 context = zmq.Context()
 
 publisher = Publisher(
-    context=context, address=f"tcp://{DESKTOP_IP}", node="motor", topics=["motor-data1","motor-data2"])
+    hub_ip=DESKTOP_IP,context=context, address=f"tcp://{DESKTOP_IP}", node="motor", topics=["motor-data1","motor-data2"])
 publisher2 = Publisher(
-    context=context, address=f"tcp://{DESKTOP_IP}", node="camera", topics=["frame"])
+    hub_ip=DESKTOP_IP,context=context, address=f"tcp://{DESKTOP_IP}", node="camera", topics=["frame"])
 
 for i in range(100):
     time.sleep(1)
