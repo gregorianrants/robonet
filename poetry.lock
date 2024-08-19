@@ -228,4 +228,4 @@ cffi = {version = "*", markers = "implementation_name == \"pypy\""}
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9.2"
-content-hash = "d24147550733e6762ed0d15124f4de57cabcae7f99cb14dc934df5928af71bf7"
+content-hash = "33b1cb2e9d5a228876787220b7942aab6a4ab260714c1e92228afc96a6810f50"
