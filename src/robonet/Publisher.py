@@ -81,7 +81,7 @@ class Publisher:
     def send_json(self,topic,py_dict):
         # as_json = json.dumps(py_dict)
         # https://pyzmq.readthedocs.io/en/v17.1.0/api/zmq.utils.jsonapi.html
-        self.socket.send_multipart([topic.encode(),zmq.utils.jsonapi.dumps(py_dict)])
+        self.socket.send_multipart([topic.encode(),self.node.encode,zmq.utils.jsonapi.dumps(py_dict)])
 
     def send_bytes(self, data):
         message = [bytes(self.node, "UTF-8"), data]
