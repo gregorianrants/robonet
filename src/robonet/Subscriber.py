@@ -161,7 +161,7 @@ class Subscriber:
             topic,node,body= self.socket.recv_multipart()
             message = zmq.utils.jsonapi.loads(body)
             topic = topic.decode()
-            yield (topic,message)
+            yield (topic,node,message)
             #[listener(message) for listener in self.listeners[topic]]
             #print(topic,message)
             # self.listener(message)
@@ -170,7 +170,7 @@ class Subscriber:
         while True:
             topic,node,bytes= self.socket.recv_multipart()
             topic = topic.decode()
-            yield (topic,bytes)
+            yield (topic,node,bytes)
             #[listener(message) for listener in self.listeners[topic]]
             #print(topic,message)
             # self.listener(message)
