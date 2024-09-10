@@ -15,3 +15,6 @@ context = zmq.Context()
 subscriber = Subscriber(DESKTOP_IP,context,[{'node':'motor','topic':'motor-data1'},{'node':'motor','topic':'motor-data2'}
                                ,{'node': 'camera','topic':'frame'}])
 subscriber.start()
+
+for (topic,message) in subscriber.json_stream():
+    print(topic,message)
