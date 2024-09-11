@@ -83,8 +83,8 @@ class Publisher:
         # https://pyzmq.readthedocs.io/en/v17.1.0/api/zmq.utils.jsonapi.html
         self.socket.send_multipart([topic.encode(),self.node.encode(),zmq.utils.jsonapi.dumps(py_dict)])
 
-    def send_bytes(self, data):
-        message = [bytes(self.node, "UTF-8"), data]
+    def send_bytes(self, topic,data):
+        message = [topic.encode(),bytes(self.node, "UTF-8"), data]
         # print(message)
         self.socket.send_multipart(message)
 
