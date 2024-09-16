@@ -2,6 +2,7 @@
 import zmq
 import json
 import time
+from .context import context
 
 
 # class Publisher:
@@ -48,7 +49,7 @@ import time
 
 
 class Publisher:
-    def __init__(self, hub_ip, context, address, node, topics=[]):
+    def __init__(self, hub_ip,address, node, topics=[]):
         self.context = context
         self.publicationAddress = None
         self.socket = None

@@ -1,6 +1,7 @@
 import zmq
 import time
 from collections import defaultdict
+from .context import context
 
 # class Subscriber:
 #     def __init__(self, hub_ip,context, publishers):
@@ -88,7 +89,7 @@ from collections import defaultdict
 #             # self.listener(message)
 
 class Subscriber:
-    def __init__(self, hub_ip,context, publishers):
+    def __init__(self, hub_ip, publishers):
         self.context = context
         self.socket = None
         self.publishers = publishers
